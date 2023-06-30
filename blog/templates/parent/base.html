@@ -1,0 +1,36 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head >
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    {% block head %}{% endblock %}
+    <style>
+        .section {
+                    background-image: url("{% static 'images/bg01.jpg'%}");
+    /* Additional CSS properties for background */
+        }
+    </style>
+</head>
+
+<body class="is-preload">
+<div class="section">
+    <ul>
+        <li>
+            <img class="background1" src="{% static 'images/bg01.jpg' %}" alt="This image for background1">
+{#            <img class="background2" src="{% static 'images/bg02.jpg' %}" alt="This image for background2">#}
+{#            <img class="background3" src="{% static 'images/bg03.jpg'%}" alt="This image for background3">#}
+        </li>
+    </ul>
+</div>
+{% include 'partials/header.html' %}
+{% include 'partials/navigation.html' %}
+{% block content %}{% endblock %}
+{% include 'partials/footer.html' %}
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+
+
+</html>

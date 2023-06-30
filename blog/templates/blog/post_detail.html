@@ -1,0 +1,36 @@
+{% extends 'parent/base.html' %}
+{% block title %}detail_post{% endblock %}
+{% block content %}
+    <h1>Detail_Post</h1>
+    <h2>{{ post.title }}</h2>
+    <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif">
+    {{ post.description | linebreaks }}
+    </p>
+    <hr>
+    {{ post.publish }}
+
+    <div>
+    {% with comments.count as cs_count %}
+    {{ cs_count }} comment{{ cs_count|pluralize }}
+    {% endwith %}
+    </div>
+
+    <div>
+    {% for com in comments %}
+        {{ com.text | linebreaks }}
+        <br>
+        {{ com.name }}
+        <hr>
+    {% empty %}
+        No comments exist!
+    {% endfor %}
+    </div>
+
+    <form method="post" action="{% url 'blog:post_comment' post.pk %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br>
+    <input type="submit" value="Send Comment">
+    </form>
+
+{% endblock %}
